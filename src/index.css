@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import '@fontsource/sn-pro';
+
+@plugin "daisyui" {
+  themes: winter --default, night --prefersdark;
+}
+
+:root {
+  font-family: 'SN Pro', sans-serif;
+}
+
+@custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
