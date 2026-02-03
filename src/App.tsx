@@ -5,7 +5,7 @@ import Navbar from './components/navbar'
 import { useRef } from 'react'
 
 function App() {
-  const featuresRef = useRef(null)
+  const featuresRef = useRef<HTMLDivElement | null>(null);
 
   const handleEnter = () => {
     featuresRef.current?.scrollIntoView({ behavior: 'smooth' })

@@ -110,7 +110,7 @@ export default function EssayOutput({ result }: { result: string }) {
 
                 // Keep spaces as is
                 if (chunk.trim() === "") {
-                    result.push(chunk);
+                    result.push(<span key={`${index}-${i}-space`}>{chunk}</span>);
                     return;
                 }
 
