@@ -1,4 +1,6 @@
+import { IconCheck, IconPlus } from "@tabler/icons-react";
 import { useState, useRef, type JSX } from "react";
+import { toast } from "react-toastify";
 
 type Phonetic = {
     audio?: string;
@@ -78,7 +80,10 @@ export default function EssayOutput({ result }: { result: string }) {
         const cleaned = cleanWord(selectedWord).toLowerCase();
         if (!savedWords.includes(cleaned)) {
             setSavedWords([...savedWords, cleaned]);
-            console.log("Saved word:", cleaned);
+            const previousSavedWords = JSON.parse(localStorage.getItem("savedWords") || "[]");
+            if (previousSavedWords.includes(cleaned)) return;
+            localStorage.setItem("savedWords", JSON.stringify([...previousSavedWords, cleaned]));
+            toast.success(`${cleaned} saved!`, { theme: "colored" });
         }
     };
 
@@ -228,10 +233,15 @@ export default function EssayOutput({ result }: { result: string }) {
                     )}
 
                     <button
-                        className="btn btn-accent btn-sm w-full"
+                        className={`btn btn-sm w-full ${selectedWord && savedWords.includes(selectedWord.toLowerCase()) ? "btn-success" : "btn-primary"}`}
                         onClick={handleSaveWord}
                     >
-                        Save Word
+                        {selectedWord && savedWords.includes(selectedWord.toLowerCase())
+                            ? <IconCheck width={16} />
+                            : <IconPlus width={16} />}
+                        {selectedWord && savedWords.includes(selectedWord.toLowerCase())
+                            ? "Word saved"
+                            : "Save Word"}
                     </button>
                 </div>
             )}

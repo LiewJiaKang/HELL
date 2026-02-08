@@ -77,9 +77,9 @@ function App() {
                   Your grammar will not survive unchanged.
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary btn-sm">
+                  <a href='/essay-generator' className="btn btn-primary btn-sm">
                     Face Judgment
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -96,9 +96,9 @@ function App() {
                   HELL keeps score.
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary btn-sm">
+                  <a href='/flashcards' className="btn btn-primary btn-sm">
                     Begin Training
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -115,9 +115,9 @@ function App() {
                   Words, stripped to their meaning.
                 </p>
                 <div className="card-actions justify-end">
-                  <button className="btn btn-primary btn-sm">
+                  <a href='/dictionary' className="btn btn-primary btn-sm">
                     Consult the Tome
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

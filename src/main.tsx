@@ -5,6 +5,10 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import EssayGenerator from './EssayGenerator';
 import FourOFour from './FourOFour';
+import Flashcards from './Flashcards';
+import Dictionary from './Dictionary';
+import Grammar from './Grammar';
+import Calendar from './Calendar';
 
 // 1. Define your routes
 const router = createBrowserRouter([
@@ -19,8 +23,20 @@ const router = createBrowserRouter([
   },
   {
     path: '/flashcards',
-    element: <App />,
+    element: <Flashcards />,
   },
+  {
+    path: '/dictionary',
+    element: <Dictionary />
+  },
+  {
+    path: '/grammar',
+    element: <Grammar />
+  },
+  {
+    path: '/calendar',
+    element: <Calendar />
+  }
 ]);
 
 // 2. Render the RouterProvider

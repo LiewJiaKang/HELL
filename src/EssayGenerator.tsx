@@ -4,6 +4,7 @@ import Navbar from "./components/navbar";
 import { CohereClientV2 } from 'cohere-ai';
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import EssayOutput from "./components/essay-output";
+import { ToastContainer } from "react-toastify";
 
 const cohere = new CohereClientV2({ token: import.meta.env.VITE_COHERE_API_KEY });
 
@@ -72,6 +73,7 @@ Write in full paragraphs. Use descriptive language, varied sentences, and make i
     return (
         <>
             <Navbar />
+            <ToastContainer />
 
             <main className="min-h-screen bg-base-200 flex justify-center px-4 py-12">
                 <div className="w-full max-w-6xl space-y-6">
@@ -86,7 +88,7 @@ Write in full paragraphs. Use descriptive language, varied sentences, and make i
                     {/* Toggle Button */}
                     <div className="flex justify-end">
                         <button
-                            className="btn btn-sm btn-accent"
+                            className="btn btn-sm btn-neutral"
                             onClick={() => setCollapsed(!collapsed)}
                         >
                             {collapsed ? <IconEye width={20} /> : <IconEyeOff width={20} />}
