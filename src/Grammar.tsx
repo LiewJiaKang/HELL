@@ -178,11 +178,13 @@ export default function Grammar() {
     return (
         <>
             <Navbar />
-            <main className="min-h-screen bg-base-100 flex">
+
+            <main className="min-h-screen bg-base-100 flex flex-col md:flex-row">
                 {/* Sidebar */}
-                <aside className="w-64 border-base-300 p-4 sticky top-0 h-screen overflow-y-auto">
+                <aside className="w-full md:w-64 border-base-300 p-4 md:sticky md:top-0 md:h-screen overflow-y-auto bg-base-100 md:bg-base-100">
                     <h2 className="text-lg font-bold mb-4">Grammar Guide</h2>
-                    <ul className="w-full menu menu-vertical bg-base-200 rounded-box">
+
+                    <ul className="w-full menu menu-vertical bg-base-200 rounded-box md:bg-base-200">
                         {grammarSections.map((section) => (
                             <li key={section.id}>
                                 <button
@@ -200,18 +202,18 @@ export default function Grammar() {
                 </aside>
 
                 {/* Content */}
-                <section className="flex-1 px-8 py-10 max-w-4xl mx-auto">
+                <section className="flex-1 px-4 md:px-8 py-6 md:py-10 max-w-full md:max-w-4xl mx-auto">
                     <header className="mb-6">
-                        <h1 className="text-3xl font-bold">{active.title}</h1>
+                        <h1 className="text-2xl md:text-3xl font-bold">{active.title}</h1>
                         <p className="text-sm opacity-70 mt-1">{active.subtitle}</p>
                     </header>
 
-                    <article className="prose max-w-none">
+                    <article className="prose max-w-full">
                         <p>{active.explanation}</p>
 
                         {active.tables?.map((table, idx) => (
                             <div key={idx} className="overflow-x-auto my-6">
-                                <table className="table table-zebra w-full">
+                                <table className="table table-zebra w-full min-w-100">
                                     <thead>
                                         <tr>
                                             {table.headers.map((h, i) => (
@@ -234,6 +236,7 @@ export default function Grammar() {
                     </article>
                 </section>
             </main>
+
             <Footer />
         </>
     );

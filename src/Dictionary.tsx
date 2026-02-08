@@ -115,18 +115,20 @@ export default function Dictionary() {
         setSaved(true);
     };
 
+
     return (
         <>
             <Navbar />
-            <main className="min-h-screen px-4 py-8 max-w-6xl mx-auto flex gap-6">
+
+            <main className="min-h-screen px-4 py-8 max-w-6xl mx-auto flex flex-col md:flex-row gap-6">
                 {/* Left Panel: Saved Words */}
-                <div className="w-1/3">
-                    <div className="card bg-base-200 shadow p-4 sticky top-8">
+                <div className="w-full md:w-1/3">
+                    <div className="card bg-base-200 shadow p-4 sticky top-8 md:top-4">
                         <h3 className="font-bold mb-2">Saved Words</h3>
                         {savedWords.length === 0 ? (
                             <p className="text-sm opacity-60">No saved words yet.</p>
                         ) : (
-                            <div className="flex flex-col gap-2">
+                            <div className="flex flex-col gap-2 max-h-64 overflow-y-auto">
                                 {savedWords.map((word, i) => (
                                     <button
                                         key={i}
@@ -143,9 +145,9 @@ export default function Dictionary() {
                 </div>
 
                 {/* Right Panel: Search & Definition */}
-                <div className="flex-1 flex flex-col gap-4">
+                <div className="flex-1 flex flex-col gap-4 mt-4 md:mt-0">
                     {/* Search */}
-                    <div className="flex gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
                         <input
                             type="text"
                             placeholder="Search a word..."
@@ -153,23 +155,22 @@ export default function Dictionary() {
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
                         />
-                        <button className="btn btn-primary" onClick={handleSearch}>
+                        <button className="btn btn-primary w-full sm:w-auto" onClick={handleSearch}>
                             Search
                         </button>
                     </div>
 
-
                     {/* Definition */}
                     {entry && (
                         <div className="card bg-base-200 shadow p-4 flex flex-col gap-2">
-                            <div className="flex justify-between items-center">
-                                <div className="flex items-center">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                                <div className="flex items-center gap-2">
                                     <h2 className="font-bold text-lg">{entry.word}</h2>
-                                    {entry.phonetics?.find(p => p.audio)?.audio && (
+                                    {entry.phonetics?.find((p) => p.audio)?.audio && (
                                         <button
                                             className="btn btn-ghost btn-xs"
                                             onClick={() =>
-                                                new Audio(entry.phonetics!.find(p => p.audio)!.audio!).play()
+                                                new Audio(entry.phonetics!.find((p) => p.audio)!.audio!).play()
                                             }
                                             title="Play pronunciation"
                                         >
@@ -180,9 +181,7 @@ export default function Dictionary() {
                                 <button
                                     className="btn btn-accent btn-sm"
                                     onClick={handleSaveWord}
-                                    disabled={
-                                        saved || savedWords.includes(entry.word.toLowerCase())
-                                    }
+                                    disabled={saved || savedWords.includes(entry.word.toLowerCase())}
                                 >
                                     {saved || savedWords.includes(entry.word.toLowerCase())
                                         ? "Word saved"
@@ -208,6 +207,7 @@ export default function Dictionary() {
                     )}
                 </div>
             </main>
+
             <Footer />
         </>
     );
